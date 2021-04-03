@@ -1,5 +1,5 @@
 # wav2vec2mdd
-End-to-End Mispronunciation Detection via wav2vec2.0
+End-to-End Mispronunciation Detection via [wav2vec2.0](https://github.com/pytorch/fairseq/blob/1bba712622b8ae4efb3eb793a8a40da386fe11d0/examples/wav2vec/README.md)
 
 ## Install Requirements
 
@@ -10,11 +10,11 @@ End-to-End Mispronunciation Detection via wav2vec2.0
 ## Fine-tune a pre-trained model with CTC
 We provide some useful script for fine-tuning wav2vec2.0 on L2-ARCTIC.
 
-### prepare training data manifest
+### Prepare training data manifest
 ```
 $ python l2_labels.py /path/to/waves --dest /manifest/path 
 ```
-### Fine-tuning on -66\% data
+### Fine-tune a pre-trained model
 Edit the run.sh
 ```bash
 #!/usr/python/bin/
@@ -43,7 +43,7 @@ and
 ```bash
 $ sh run.sh
 ```
-### Calculate 
+### Evaluating a CTC model
 Edit the evaluate.sh
 ```bash
 #!/usr/python/bin/
@@ -65,7 +65,7 @@ export PATH=$PWD/utils/:$KALDI_ROOT/tools/openfst/bin:$KALDI_ROOT/tools/irstlm/b
 . $KALDI_ROOT/tools/config/common_path.sh
 export LC_ALL=C
 
-# 
+# calculate the result of MDD
 python3 result.py
 align-text ark:ref.txt  ark:annotation.txt ark,t:- | wer_per_utt_details.pl > ref_human_detail
 align-text ark:annotation.txt  ark:hypo.txt ark,t:- | wer_per_utt_details.pl > human_our_detail
