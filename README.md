@@ -73,3 +73,7 @@ align-text ark:ref.txt  ark:hypo.txt ark,t:- | wer_per_utt_details.pl > ref_our_
 python3 ins_del_sub_cor_analysis.py
 rm ref_human_detail human_our_detail ref_our_detail
 ```
+and 
+```bash
+$ sh evaluate.sh
+```
