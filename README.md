@@ -5,15 +5,22 @@ End-to-End Mispronunciation Detection via wav2vec2.0
 
 * [fairseq](https://github.com/pytorch/fairseq/blob/master/README.md)
 * [Flashlight Python Bindings](https://github.com/facebookresearch/flashlight/tree/master/bindings/python)
-
+* Calculate the details of MDD requires tool [kaldi](https://kaldi-asr.org)
 
 ## Fine-tune a pre-trained model with CTC
-Edit the run.sh.
+We provide some useful script for fine-tuning wav2vec2.0 on L2-ARCTIC.
+
+### prepare training data manifest
+```
+$ python l2_labels.py /path/to/waves --dest /manifest/path 
+```
+### Fine-tuning on -66\% data
+Edit the run.sh
 ```bash
 #!/usr/python/bin/
 
 export CUDA_VISIBLE_DEVICES=1 # GPU device ID
-DATASET=/manifest/path/
+DATASET=/manifest/path
 
 FAIRSEQ_PATH=/path/to/fairseq
 valid_subset=valid
@@ -31,4 +38,38 @@ python3 $FAIRSEQ_PATH/fairseq_cli/hydra_train.py \
     model.w2v_path=$model_path \
     --config-dir $config_dir \
     --config-name $config_name
+```
+and 
+```bash
+$ sh run.sh
+```
+### Calculate 
+Edit the evaluate.sh
+```bash
+#!/usr/python/bin/
+
+# Evaluating the CTC model
+export CUDA_VISIBLE_DEVICES=0
+DATASET=/manifest/path
+FAIRSEQ_PATH=/path/to/fairseq
+
+python3 $FAIRSEQ_PATH/examples/speech_recognition/infer.py $DATASET --task audio_pretraining \
+--nbest 1 --path /path/to/checkpoints/checkpoint_best.pt --gen-subset test --results-path $DATASET --w2l-decoder viterbi \
+--lm-weight 0 --word-score -1 --sil-weight 0 --criterion ctc --labels phn --max-tokens 640000
+
+# Env 
+export KALDI_ROOT=/disk2/plk/kaldi
+[ -f $KALDI_ROOT/tools/env.sh ] && . $KALDI_ROOT/tools/env.sh
+export PATH=$PWD/utils/:$KALDI_ROOT/tools/openfst/bin:$KALDI_ROOT/tools/irstlm/bin/:$PWD:$PATH
+[ ! -f $KALDI_ROOT/tools/config/common_path.sh ] && echo >&2 "The standard file $KALDI_ROOT/tools/config/common_path.sh is not present -> Exit!" && exit 1
+. $KALDI_ROOT/tools/config/common_path.sh
+export LC_ALL=C
+
+# 
+python3 result.py
+align-text ark:ref.txt  ark:annotation.txt ark,t:- | wer_per_utt_details.pl > ref_human_detail
+align-text ark:annotation.txt  ark:hypo.txt ark,t:- | wer_per_utt_details.pl > human_our_detail
+align-text ark:ref.txt  ark:hypo.txt ark,t:- | wer_per_utt_details.pl > ref_our_detail
+python3 ins_del_sub_cor_analysis.py
+rm ref_human_detail human_our_detail ref_our_detail
 ```
