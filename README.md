@@ -5,7 +5,7 @@ End-to-End Mispronunciation Detection via wav2vec2.0
 
 * [fairseq](https://github.com/pytorch/fairseq/blob/master/README.md)
 * [Flashlight Python Bindings](https://github.com/facebookresearch/flashlight/tree/master/bindings/python)
-* Calculate the details of MDD requires tool [kaldi](https://kaldi-asr.org)
+* Evaluating the trained model requires tool [kaldi](https://kaldi-asr.org)
 
 ## Fine-tune a pre-trained model with CTC
 We provide some useful script for fine-tuning wav2vec2.0 on L2-ARCTIC.
@@ -58,7 +58,7 @@ python3 $FAIRSEQ_PATH/examples/speech_recognition/infer.py $DATASET --task audio
 --lm-weight 0 --word-score -1 --sil-weight 0 --criterion ctc --labels phn --max-tokens 640000
 
 # Env 
-export KALDI_ROOT=/disk2/plk/kaldi
+export KALDI_ROOT=/path/to/kaldi
 [ -f $KALDI_ROOT/tools/env.sh ] && . $KALDI_ROOT/tools/env.sh
 export PATH=$PWD/utils/:$KALDI_ROOT/tools/openfst/bin:$KALDI_ROOT/tools/irstlm/bin/:$PWD:$PATH
 [ ! -f $KALDI_ROOT/tools/config/common_path.sh ] && echo >&2 "The standard file $KALDI_ROOT/tools/config/common_path.sh is not present -> Exit!" && exit 1
