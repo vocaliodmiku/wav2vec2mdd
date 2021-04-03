@@ -75,5 +75,5 @@ rm ref_human_detail human_our_detail ref_our_detail
 ```
 and 
 ```bash
-$ sh evaluate.sh
+$ sh evaluate.sh >> result
 ```
