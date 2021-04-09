@@ -3,7 +3,7 @@ End-to-End Mispronunciation Detection via [wav2vec2.0](https://github.com/pytorc
 
 Coming Soon
 
-<div style='display: none'>
+<!--
 ## Install Requirements
 
 * [fairseq](https://github.com/pytorch/fairseq/blob/master/README.md)
@@ -81,4 +81,4 @@ and
 ```bash
 $ sh evaluate.sh >> result
 ```
-</div>
+-->
