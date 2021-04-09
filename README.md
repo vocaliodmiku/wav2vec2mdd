@@ -1,6 +1,9 @@
 # wav2vec2mdd
 End-to-End Mispronunciation Detection via [wav2vec2.0](https://github.com/pytorch/fairseq/blob/1bba712622b8ae4efb3eb793a8a40da386fe11d0/examples/wav2vec/README.md)
 
+Coming Soon
+
+<div style='display: none'>
 ## Install Requirements
 
 * [fairseq](https://github.com/pytorch/fairseq/blob/master/README.md)
@@ -9,6 +12,7 @@ End-to-End Mispronunciation Detection via [wav2vec2.0](https://github.com/pytorc
 
 ## Fine-tune a pre-trained model with CTC
 We provide some useful script for fine-tuning wav2vec2.0 on L2-ARCTIC.
+<div style='display: none'>
 
 ### Prepare training data manifest
 ```
@@ -77,3 +81,4 @@ and
 ```bash
 $ sh evaluate.sh >> result
 ```
+</div>
