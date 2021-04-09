@@ -2,7 +2,7 @@
 End-to-End Mispronunciation Detection via [wav2vec2.0](https://github.com/pytorch/fairseq/blob/1bba712622b8ae4efb3eb793a8a40da386fe11d0/examples/wav2vec/README.md)
 
 Coming Soon
-
+We provide some useful script for fine-tuning wav2vec2.0 on L2-ARCTIC.
 <!--
 ## Install Requirements
 
