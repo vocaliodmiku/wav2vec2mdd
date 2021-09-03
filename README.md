@@ -4,7 +4,7 @@ End-to-End Mispronunciation Detection via [wav2vec2.0](https://github.com/pytorc
 Coming Soon. 
 
 We provide some useful script for fine-tuning wav2vec2.0 on L2-ARCTIC.
-<!--
+
 ## Install Requirements
 
 * [fairseq](https://github.com/pytorch/fairseq/blob/master/README.md)
@@ -82,4 +82,3 @@ and
 ```bash
 $ sh evaluate.sh >> result
 ```
--->
