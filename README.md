@@ -19,7 +19,7 @@ We provide some useful script for fine-tuning wav2vec2.0 on L2-ARCTIC.
 
 ### Prepare training data manifest
 ```
-$ python l2_labels.py /path/to/waves --dest /manifest/path 
+$ python l2_label.py /path/to/waves --dest /manifest/path 
 ```
 ### Fine-tune a pre-trained model
 Edit the run.sh
