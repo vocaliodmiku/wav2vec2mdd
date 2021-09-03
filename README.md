@@ -48,6 +48,10 @@ and
 $ sh run.sh
 ```
 ### Evaluating a CTC model
+clone the respository to local
+```
+    git clone https://github.com/cageyoko/CTC-Attention-Mispronunciation
+```
 Edit the evaluate.sh
 ```bash
 #!/usr/python/bin/
