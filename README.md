@@ -91,5 +91,5 @@ $ sh evaluate.sh >> result
 
    
 # What's more
-we are going to make wav2vec2-based model to provide dignose information in near future, Please stay tuned.
+we are going to make wav2vec2-based model to provide diagnose information in near future, Please stay tuned.
     
