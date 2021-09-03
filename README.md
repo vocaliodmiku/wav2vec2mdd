@@ -7,6 +7,7 @@ evaluate part are come from https://github.com/cageyoko/CTC-Attention-Mispronunc
 
 * [fairseq](https://github.com/pytorch/fairseq/blob/master/README.md)
 * [Flashlight Python Bindings](https://github.com/facebookresearch/flashlight/tree/master/bindings/python)
+    if you face some problems to install it, you can use aother decode pipeline.
 * Evaluating the trained model requires tool [kaldi](https://kaldi-asr.org)
 
 ## Fine-tune a pre-trained model with CTC
