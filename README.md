@@ -3,6 +3,9 @@ End-to-End Mispronunciation Detection via [wav2vec2.0](https://github.com/pytorc
 
 We provide some useful script for fine-tuning wav2vec2.0 on L2-ARCTIC.(process data/finetune/evaluate)
 evaluate part are come from https://github.com/cageyoko/CTC-Attention-Mispronunciation
+
+# checkpoint/log
+
 ## Install Requirements
 
 * [fairseq](https://github.com/pytorch/fairseq/blob/master/README.md)
